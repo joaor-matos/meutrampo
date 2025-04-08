@@ -68,6 +68,8 @@ const Login_Cadastro = ({setToken}) => {
     <div className='backgroundLogin'>
       <h1>meu trampo</h1>
     <div className='containerLogin'>
+      <div>
+      <h2>Cadastro</h2>
       <form onSubmit={handleSubmitCadastro} className='formLogin'>
         <input 
         className='inputLogin'
@@ -93,8 +95,11 @@ const Login_Cadastro = ({setToken}) => {
             Cadastrar
         </button>
       </form>
-
+</div>
       <hr/>
+
+      <div>
+      <h2>Login</h2>
 
       <form onSubmit={handleSubmitLogin} className='formLogin'>
         <input 
@@ -113,7 +118,7 @@ const Login_Cadastro = ({setToken}) => {
             Login
         </button>
       </form>
-     
+     </div>
     </div>
     </div>
   )
