@@ -25,8 +25,7 @@ const App = () => {
         <Route path={'/'} element={<Login_Cadastro setToken={setToken}/>}/>
         {token?<Route path={'/configuracao'} element={<Configuracao token={token} />}/>:''}
         <Route path={'/portfolio'} element={<Portfolio/>}/>
-        <Route path={'/edit'} element={<Configuracao/>}></Route>
-
+        <Route path={'/portfolio/:fullName'} element={<Portfolio/>}/>
       </Routes>
     </div>
   )

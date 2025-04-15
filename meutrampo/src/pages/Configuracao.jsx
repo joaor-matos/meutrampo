@@ -11,18 +11,32 @@ const Configuracao = ({token}) => {
           <image className='configPortfolioBanner'></image> 
         </div>
         
-        <h1 className='configPortfolioNome'>Nome</h1>
+        <h1 className='configPortfolioNome'>{token.user.user_metadata.fullName}</h1>
         <p className='configPortfolioBio'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis aliquam nisl. Nullam pellentesque finibus diam, in feugiat orci consectetur interdum. Etiam blandit semper lorem nec auctor. In in enim in neque fringilla placerat. Suspendisse turpis dolor, sodales et maximus in, convallis in lectus. Aenean tristique massa nec ex placerat consequat. Vivamus scelerisque vehicula iaculis.</p>
 
         <div className='containerConfigLink'>
             <div className='configLinkComponent'>
-                <image className='configLinkIcone'></image>
-                <text className='configLinkText'>Texto</text>
-                <text className='configLinkText'>Link</text>
+            <label className='configLinkIcone'>
+                  <input type='file' accept='image/png, image/jpeg'/>
+                </label>
+                <input className='configLinkText' placeholder='Texto' type='text' name='linkTitle'/>
+                <input className='configLinkText' placeholder='Link' type='text' name='linkTitle'/>
             </div>
+            <form className='configLinkComponent'>
+                <label className='configLinkIcone'>
+                  <input type='file' accept='image/png, image/jpeg'/>
+                </label>
+                <input className='configLinkText' placeholder='Texto' type='text' name='linkTitle'/>
+                <input className='configLinkText' placeholder='Link' type='text' name='linkTitle'/>
+            </form>
+            <div className='containerConfigLinkBtn'>
             <button className='configAdicionarLink'>
-              <text>+</text>
+              <img src={plus} alt="" />
             </button>
+            <button className='configAdicionarLink'>
+              <img src={plus} alt="" />
+            </button>
+            </div>
         </div>
      
     </div>

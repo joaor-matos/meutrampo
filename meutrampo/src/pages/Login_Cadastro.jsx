@@ -7,12 +7,14 @@ const Login_Cadastro = ({setToken}) => {
   let navigate = useNavigate()
 
   const[formDataCadastro, setFormDataCadastro] = useState({
-    nome:'', email:'', senha:''
+    fullName:'', email:'', senha:''
   })
 
   const[formDataLogin, setFormDataLogin] = useState({
     email:'', senha:''
   })
+
+      // Registrar mudanças no input de Cadastro
 
   function handleChangeCadastro(event){
     setFormDataCadastro((prevFormDataCadastro)=>{
@@ -23,6 +25,8 @@ const Login_Cadastro = ({setToken}) => {
     })
   }
 
+    // Registrar mudanças no input de Login
+
   function handleChangeLogin(event){
     setFormDataLogin((prevFormDataLogin)=>{
       return{
@@ -32,21 +36,27 @@ const Login_Cadastro = ({setToken}) => {
     })
   }
 
-  async function handleSubmitCadastro(event){
-    event.preventDefault()
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email: formDataCadastro.email,
-        password: formDataCadastro.senha,
-        options: {
-          fullName: formDataCadastro.nome
+    // Cadastro
+
+  const handleSubmitCadastro = async(e) => {
+    e.preventDefault();
+    const { error } = await supabase.auth.signUp({
+      email: formDataCadastro.email,
+      password: formDataCadastro.senha,
+      options: {
+        data: {
+          fullName: formDataCadastro.fullName
         }
-      })
-      alert('Email de verificação enviado')
-    } catch (error) {
-      alert(error)
+      }
+    });
+    if (error) {
+      alert('Erro no cadastro: ' + error.message);
+    } else {
+      alert('Usuário cadastrado com sucesso!');
     }
   }
+
+  // Login
 
   async function handleSubmitLogin(e){
     e.preventDefault()
@@ -68,21 +78,26 @@ const Login_Cadastro = ({setToken}) => {
     <div className='backgroundLogin'>
       <h1>meu trampo</h1>
     <div className='containerLogin'>
+
+        {/* Form de Cadastro */}
+
       <div>
       <h2>Cadastro</h2>
       <form onSubmit={handleSubmitCadastro} className='formLogin'>
         <input 
         className='inputLogin'
         placeholder='Nome ou Empresa'
-        name='nome'
+        name='fullName'
         onChange={handleChangeCadastro}
         />
+
         <input 
         className='inputLogin'
         placeholder='Email'
         name='email'
         onChange={handleChangeCadastro}
         />
+
         <input 
         className='inputLogin'
         placeholder='Senha'
@@ -98,16 +113,20 @@ const Login_Cadastro = ({setToken}) => {
 </div>
       <hr/>
 
+        {/* Form de Login */}
+
       <div>
       <h2>Login</h2>
 
       <form onSubmit={handleSubmitLogin} className='formLogin'>
         <input 
+        className='inputLogin'
         placeholder='Email'
         name='email'
         onChange={handleChangeLogin}
         />
         <input 
+        className='inputLogin'
         placeholder='Senha'
         name='senha'
         type='password'
