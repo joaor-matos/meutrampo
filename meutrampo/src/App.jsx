@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Login_Cadastro, Configuracao, Portfolio } from './pages'
 import {Routes, Route} from 'react-router-dom'
+import Teste from './pages/Teste'
 
 const App = () => {
 
@@ -26,6 +27,7 @@ const App = () => {
         {token?<Route path={'/configuracao'} element={<Configuracao token={token} />}/>:''}
         <Route path={'/portfolio'} element={<Portfolio/>}/>
         <Route path={'/portfolio/:fullName'} element={<Portfolio/>}/>
+        <Route path={'/oteste'} element={<Teste/>}/>
       </Routes>
     </div>
   )
