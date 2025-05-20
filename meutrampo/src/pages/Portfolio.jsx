@@ -1,26 +1,43 @@
 import React from 'react'
 import '../styles.css'
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { supabase } from "../assets/client"
 
 const Portfolio = ({token}) => {
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('fullName', fullName)
+          .single();
+
+        if (error) throw error;
+        setProfile(data);
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [fullName]);
+
+  if (loading) return <div>Loading...</div>;
+  if (!profile) return <div>Profile not found</div>;
   return (
     <div className='backgroundLogin'>
       
     <div className='containerPortfolio'>
-        <img className='portfolioBanner'></img>
-        <h1 className='portfolioNome'>{token.user.user_metadata.fullName}</h1>
-        <p className='portfolioBio'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis aliquam nisl. Nullam pellentesque finibus diam, in feugiat orci consectetur interdum. Etiam blandit semper lorem nec auctor. In in enim in neque fringilla placerat. Suspendisse turpis dolor, sodales et maximus in, convallis in lectus. Aenean tristique massa nec ex placerat consequat. Vivamus scelerisque vehicula iaculis.</p>
 
-        <div>
-            <div className='linkComponent'>
-                <img className='linkIcone'></img>
-                <text className='linkButton'>Link1</text>
-            </div>
-            <div className='linkComponent'>
-                <img className='linkIcone'></img>
-                <text className='linkButton'>Link2</text>
-            </div>
-        </div>
-     
+        <h1 className='portfolioNome'>{token.user.user_metadata.fullName}</h1>
+        
     </div>
     </div>
   )
