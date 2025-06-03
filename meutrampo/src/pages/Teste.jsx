@@ -1,40 +1,47 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { supabase } from "../assets/client"
+import { useParams } from 'react-router-dom'
+import { supabase } from '../assets/client'
+import { useEffect, useState } from 'react'
 
 const Teste = () => {
-    const { fullName } = useParams();
-    const [profile, setProfile] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const { fullName } = useParams() // Agora capturando o parâmetro corretamente
+    const [userData, setUserData] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const fetchProfile = async () => {
+        const fetchUser = async () => {
             try {
                 const { data, error } = await supabase
                     .from('profiles')
                     .select('*')
-                    .eq('fullName', fullName)
-                    .single();
+                    .eq('fullname', fullName) // Ou o campo correto da sua tabela
+                    .single()
 
-                if (error) throw error;
-                setProfile(data);
+                if (error) throw error
+                setUserData(data)
             } catch (error) {
-                console.error('Error fetching profile:', error);
+                console.error('Erro ao buscar usuário:', error)
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
-        };
+        }
 
-        fetchProfile();
-    }, [fullName]);
+        if (fullName) {
+            fetchUser()
+        }
+    }, [fullName])
 
-    if (loading) return <div>Loading...</div>;
-    if (!profile) return <div>Profile not found</div>;
+    if (loading) return <div>Carregando...</div>
 
     return (
         <div>
-            <h1>{profile.fullName || fullName}</h1>
-            <p>Email: {profile.email}</p>
+            {userData ? (
+                <div>
+                    <h1>Perfil de {userData.fullname}</h1>
+                    {/* Outros dados do usuário */}
+                </div>
+            ) : (
+                <p>Usuário {fullName} não encontrado</p>
+            )}
         </div>
     )
 }

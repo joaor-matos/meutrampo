@@ -1,11 +1,10 @@
-import React from 'react'
-import '../styles.css'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from "../assets/client"
 
-const Portfolio = ({token}) => {
-  const [profile, setProfile] = useState(null);
+const Teste = () => {
+  const { username } = useParams();
+  const [name, setName] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,34 +12,32 @@ const Portfolio = ({token}) => {
       try {
         const { data, error } = await supabase
           .from('profiles')
-          .select('*')
-          .eq('fullName', fullName)
+          .select('fullname')
+          .eq('username', username)
           .single();
 
+        console.log('Debug:', { data, error }); // Depuração
+
         if (error) throw error;
-        setProfile(data);
+        if (data) setName(data.fullname);
       } catch (error) {
-        console.error('Error fetching profile:', error);
+        console.error('Error fetching profile:', error.message);
       } finally {
         setLoading(false);
       }
     };
 
     fetchProfile();
-  }, [fullName]);
+  }, [username]);
 
   if (loading) return <div>Loading...</div>;
-  if (!profile) return <div>Profile not found</div>;
+  
   return (
-    <div className='backgroundLogin'>
-      
-    <div className='containerPortfolio'>
-
-        <h1 className='portfolioNome'>{token.user.user_metadata.fullName}</h1>
-        
+    <div>
+      <h1>{name || 'Perfil não encontrado'}</h1>
+      {!name && <p>Nenhum usuário encontrado com o nome: {username}</p>}
     </div>
-    </div>
-  )
-}
+  );
+    }
 
-export default Portfolio
+    export default Teste
