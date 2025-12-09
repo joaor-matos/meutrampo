@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 const Teste = () => {
     const { fullName } = useParams() // Agora capturando o parâmetro corretamente
     const [userData, setUserData] = useState(null)
+    const [userLinks, setUserLinks] = useState([]);
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -29,6 +30,8 @@ const Teste = () => {
             fetchUser()
         }
     }, [fullName])
+
+    
 
     if (loading) return <div>Carregando...</div>
 

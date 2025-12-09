@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Login_Cadastro, Configuracao, Portfolio } from './pages'
 import { Routes, Route } from 'react-router-dom'
 import Teste from './pages/Teste'
+import LandingPage from './pages/LandingPage'
 
 const App = () => {
   const [token, setToken] = useState(false)
@@ -26,6 +27,8 @@ const App = () => {
       <Routes>
         {/* Rota pública principal */}
         <Route path="/" element={<Login_Cadastro setToken={setToken} />} />
+
+        <Route path="/page" element={<LandingPage />} />
         
         {/* Rota dinâmica para perfis - DEVE VIR ANTES de rotas específicas */}
         <Route path="/:fullName" element={<Teste />} />
