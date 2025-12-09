@@ -199,6 +199,7 @@ hr {
     border-radius: 10px;
     padding-bottom: 10px;
     margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 .configLinkComponent {
@@ -300,4 +301,26 @@ hr {
 
 .configProfileBio::placeholder {
     color: #CC6589;
+}
+
+ul {
+    list-style-type: none;
+  }
+
+  .configDeletarLink {
+    width: 60px;
+    height: 50px;
+    align-self: center;
+    background-color: #CC6589;
+    border-radius: 10px;
+    border-width: 0px;
+    margin-inline: 5px;
+}
+
+.containerDeleteLinkBtn {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-width: 0px;
+    background-color: rgba(10,23,55,0);
 }

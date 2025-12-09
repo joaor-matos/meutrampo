@@ -1,7 +1,8 @@
 import React, { useState, ReactProps, useEffect } from 'react'
 import { supabase } from "../assets/client"
 import '../styles.css';
-import check from '../assets/Check.png'
+import check from '../assets/Check.png';
+import deleteIcon from '../assets/delete.png';
 
 const Configuracao = ({ token }) => {
   const [novoLink, setNovoLink] = useState({ link_title: "", link_url: "" });
@@ -12,7 +13,8 @@ const Configuracao = ({ token }) => {
 
 
   const fetchLinks = async () => {
-    const { error, data } = await supabase.from("links").select("*")
+    const { error, data } = await supabase.from("links")
+      .select("*")
       .order("created_at", { ascending: true });
 
     if (error) {
@@ -64,12 +66,10 @@ const Configuracao = ({ token }) => {
     <div className='backgroundConfig'>
 
       <div className='containerPortfolio'>
-        <div className='configPortfolioBackground'>
-          <img className='configPortfolioBanner'></img>
-        </div>
+        
 
         <h1 className='configPortfolioNome'>{token.user.user_metadata.fullName}</h1>
-        <p className='configPortfolioBio'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis aliquam nisl. Nullam pellentesque finibus diam, in feugiat orci consectetur interdum. Etiam blandit semper lorem nec auctor. In in enim in neque fringilla placerat. Suspendisse turpis dolor, sodales et maximus in, convallis in lectus. Aenean tristique massa nec ex placerat consequat. Vivamus scelerisque vehicula iaculis.</p>
+        <p className='configPortfolioBio'>{token.user.user_metadata.fullName}</p>
 
         {/* Configurar links do portfolio */}
 
@@ -97,9 +97,10 @@ const Configuracao = ({ token }) => {
             {links.map((links) => (
               <li>
                 <div className='linkComponent'>
-                  <img className='linkIcone'></img>
                   <text className='linkButton'>{links.link_title}</text>
-                  <button onClick={() => handleDeleteLink(links.id_link)}>deletar</button>
+                  <button className='containerDeleteLinkBtn'>
+                    <img className='configDeletarLink' src={deleteIcon} alt="" onClick={() => handleDeleteLink(links.id_link)} />
+                    </button>
                 </div>
               </li>
 
