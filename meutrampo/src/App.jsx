@@ -28,6 +28,7 @@ const App = () => {
         {/* Rota pública principal */}
         <Route path="/" element={<Login_Cadastro setToken={setToken} />} />
 
+        {/* Rota landing page */}
         <Route path="/page" element={<LandingPage />} />
         
         {/* Rota dinâmica para perfis - DEVE VIR ANTES de rotas específicas */}
