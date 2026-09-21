@@ -34,6 +34,7 @@ const Teste = () => {
   
   return (
     <div>
+      <h1>o portfolio.jsx é o certo</h1>
       <h1>{name || 'Perfil não encontrado'}</h1>
       {!name && <p>Nenhum usuário encontrado com o nome: {username}</p>}
     </div>

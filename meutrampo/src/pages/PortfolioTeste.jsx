@@ -3,8 +3,9 @@ import '../styles.css'
 
 const PortfolioTeste = ({token}) => {
   return (
+    
     <div className='backgroundLogin'>
-      
+      <h1>o portfolioteste.jsx é o certo</h1>
     <div className='containerPortfolio'>
         <img className='portfolioBanner'></img>
         <h1 className='portfolioNome'>{token.user.user_metadata.fullName}</h1>

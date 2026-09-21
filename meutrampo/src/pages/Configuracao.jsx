@@ -1,15 +1,14 @@
-import React, { useState, ReactProps, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { supabase } from "../assets/client"
 import '../styles.css';
 import check from '../assets/Check.png';
 import deleteIcon from '../assets/delete.png';
 
 const Configuracao = ({ token }) => {
-  const [novoLink, setNovoLink] = useState({ link_title: "", link_url: "" });
   const [links, setLinks] = useState([]);
 
   const [novoLinkTitle, setNovoLinkTitle] = useState("");
-  const [novoLinkURL, setNovoLinkURL] = useState({ link_url: "" });
+  const [novoLinkURL, setNovoLinkURL] = useState("");
 
 
   const fetchLinks = async () => {
@@ -22,7 +21,7 @@ const Configuracao = ({ token }) => {
       return;
     }
 
-    setLinks(data);
+    setLinks(data || []);
 
   };
 
@@ -31,36 +30,37 @@ const Configuracao = ({ token }) => {
   }, []);
 
   const handleAddLink = async () => {
+    if (!novoLinkTitle || !novoLinkURL) return;
+
     const novoLinkData = {
       link_title: novoLinkTitle,
       link_url: novoLinkURL,
     };
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("links")
-      .insert([novoLinkData])
-      .single();
+      .insert([novoLinkData]);
 
     if (error) {
-      console.log("Erro adicionando link ", error)
+      console.error("Erro adicionando link ", error);
     } else {
-      setNovoLink((prev) => [...prev, data]);
-      setNovoLink("");
+      await fetchLinks();
+      setNovoLinkTitle("");
+      setNovoLinkURL("");
     }
   };
 
   const handleDeleteLink = async (id_link) => {
-    const { data, error} = await supabase
-    .from("links")
-    .delete()
-    .eq("id_link", id_link)
-  if (error) {
-    console.log("Error deletando link ", error)
-  } else {
-    setLinks((prev) => prev.filter((links) => links.id_link !== id_link));
-  }
-  }
+    const { error } = await supabase
+      .from("links")
+      .delete()
+      .eq("id_link", id_link);
 
-  console.log(links);
+    if (error) {
+      console.error("Error deletando link ", error);
+    } else {
+      setLinks((prev) => prev.filter((item) => item.id_link !== id_link));
+    }
+  };
 
   return (
     <div className='backgroundConfig'>
@@ -68,45 +68,56 @@ const Configuracao = ({ token }) => {
       <div className='containerPortfolio'>
         
 
-        <h1 className='configPortfolioNome'>{token.user.user_metadata.fullName}</h1>
-        <p className='configPortfolioBio'>{token.user.user_metadata.fullName}</p>
+        <h1 className='configPortfolioNome'>{token?.user?.user_metadata?.fullName}</h1>
+        <p className='configPortfolioBio'>{token?.user?.user_metadata?.fullName}</p>
 
         {/* Configurar links do portfolio */}
 
         <div className='containerConfigLink'>
 
           <div className='configLinkComponent'>
-            <input className='configLinkText' placeholder='Texto' type='text' name='linkTitle'
+            <input 
+              className='configLinkText' 
+              placeholder='Texto' 
+              type='text' 
+              name='linkTitle'
+              value={novoLinkTitle}
               onChange={(e) => setNovoLinkTitle(e.target.value)}
             />
-            <input className='configLinkText' placeholder='Link' type='text' name='linkUrl'
+            <input 
+              className='configLinkText' 
+              placeholder='Link' 
+              type='text' 
+              name='linkUrl'
+              value={novoLinkURL}
               onChange={(e) => setNovoLinkURL(e.target.value)}
             />
           </div>
 
           <div className='containerConfigLinkBtn'>
-            <button className='configAdicionarLink'>
-              <img src={check} alt="" onClick={handleAddLink} />
+            <button className='configAdicionarLink' onClick={handleAddLink}>
+              <img src={check} alt="Adicionar link" />
             </button>
           </div>
         </div>
 
+        {/* Seção de links no banco de dados do usuário */}
         <div>
-
           <ul>
-            {links.map((links) => (
-              <li>
+            {links.map((link) => (
+              <li key={link.id_link}>
                 <div className='linkComponent'>
-                  <text className='linkButton'>{links.link_title}</text>
-                  <button className='containerDeleteLinkBtn'>
-                    <img className='configDeletarLink' src={deleteIcon} alt="" onClick={() => handleDeleteLink(links.id_link)} />
-                    </button>
+                  <span className='linkButton'>{link.link_title}</span>
+                  
+                  {/* Botão de deletar links */}
+                  <button className='containerDeleteLinkBtn' onClick={() => handleDeleteLink(link.id_link)}>
+                    <img className='configDeletarLink' src={deleteIcon} alt="Deletar link" />
+                  </button>
+
                 </div>
               </li>
-
             ))}
           </ul>
-
         </div>
 
         {/* Configurar perfil de usuário/empresa */}
