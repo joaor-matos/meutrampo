@@ -145,6 +145,7 @@ hr {
     padding-inline: 10px;
     font-size: 30px;
     font-weight: 600;
+    text-decoration-line: none;
 }
 
 /* Config */

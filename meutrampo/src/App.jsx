@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Login_Cadastro, Configuracao, Portfolio } from './pages'
+import { Login_Cadastro, Configuracao } from './pages'
 import { Routes, Route } from 'react-router-dom'
-import Teste from './pages/Teste'
+import PortfolioBase from './pages/PortfolioBase'
 import LandingPage from './pages/LandingPage'
 
 const App = () => {
@@ -32,7 +32,7 @@ const App = () => {
         <Route path="/page" element={<LandingPage />} />
         
         {/* Rota dinâmica para perfis - DEVE VIR ANTES de rotas específicas */}
-        <Route path="/:fullName" element={<Teste />} />
+        <Route path="/portfolio/:fullName" element={<PortfolioBase />} />
         
         {/* Rotas protegidas */}
         {token && (
@@ -41,9 +41,6 @@ const App = () => {
           </>
         )}
         
-        {/* Rotas de portfolio */}
-        <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/portfolio/:fullName" element={<Portfolio />} />
       </Routes>
     </div>
   )
