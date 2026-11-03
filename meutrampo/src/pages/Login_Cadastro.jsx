@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles.css';
 import { supabase } from '../assets/client';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 const Login_Cadastro = ({ setToken }) => {
   let navigate = useNavigate()
@@ -53,8 +54,8 @@ const Login_Cadastro = ({ setToken }) => {
       return 'Este nome de usuário já está em uso. Escolha outro';
     }
     if (error.message.includes('Password should be at least')) {
-    return 'A senha deve ter pelo menos 6 caracteres.';
-  }
+      return 'A senha deve ter pelo menos 6 caracteres.';
+    }
     if (error.message.includes('Anonymous sign-ins are disabled')) {
       return 'Preencha todos os campos obrigatórios.';
     }
@@ -111,37 +112,44 @@ const Login_Cadastro = ({ setToken }) => {
 
   return (
     <div className='backgroundLogin'>
-      <h1>meu trampo</h1>
+      <div className='headerLogin'>
+        <div className='containerLogoLogin'>
+          <img src={logo} alt="Logo Meu Trampo" />
+        </div>
+        <h1 className='meutrampotext'>meu trampo</h1>
+      </div>
       <div className='containerLogin'>
 
         {/* Form de Cadastro */}
 
         <div>
-          <h2>Cadastro</h2>
-          <form onSubmit={handleSubmitCadastro} className='formLogin'>
-            <input
-              className='inputLogin'
-              placeholder='Nome ou Empresa'
-              name='fullName'
-              onChange={handleChangeCadastro}
-            />
 
-            <input
-              className='inputLogin'
-              placeholder='Email'
-              name='email'
-              onChange={handleChangeCadastro}
-            />
 
-            <input
-              className='inputLogin'
-              placeholder='Senha'
-              name='senha'
-              type='password'
-              onChange={handleChangeCadastro}
-            />
+          <form onSubmit={handleSubmitCadastro} className='formContent'>
+            <h2 className='formText'>Cadastro</h2>
+            <div className='containerInput'>
+              <input
+                className='inputLogin'
+                placeholder='Nome ou Empresa'
+                name='fullName'
+                onChange={handleChangeCadastro}
+              />
+              <input
+                className='inputLogin'
+                placeholder='Email'
+                name='email'
+                onChange={handleChangeCadastro}
+              />
+              <input
+                className='inputLogin'
+                placeholder='Senha'
+                name='senha'
+                type='password'
+                onChange={handleChangeCadastro}
+              />
+            </div>
 
-            <button className='buttonLogin' type='submit'>
+            <button className='buttonSubmit' type='submit'>
               Cadastrar
             </button>
           </form>
@@ -150,30 +158,31 @@ const Login_Cadastro = ({ setToken }) => {
 
         {/* Form de Login */}
 
-        <div>
-          <h2>Login</h2>
-
-          <form onSubmit={handleSubmitLogin} className='formLogin'>
-            <input
-              className='inputLogin'
-              placeholder='Email'
-              name='email'
-              onChange={handleChangeLogin}
-            />
-            <input
-              className='inputLogin'
-              placeholder='Senha'
-              name='senha'
-              type='password'
-              onChange={handleChangeLogin}
-            />
-
-            <button className='buttonLogin' type='submit'>
+        <div className='containerForm'>
+          <form onSubmit={handleSubmitLogin} className='formContent'>
+            <h2 className='formText'>Login</h2>
+            <div className='containerInput'>
+              <input
+                className='inputLogin'
+                placeholder='Email'
+                name='email'
+                onChange={handleChangeLogin}
+              />
+              <input
+                className='inputLogin'
+                placeholder='Senha'
+                name='senha'
+                type='password'
+                onChange={handleChangeLogin}
+              />
+            </div>
+            <button className='buttonSubmit' type='submit'>
               Login
             </button>
           </form>
         </div>
       </div>
+      <h6 className='footerTextLogin'>meutrampo - Feito com paixão para impulsionar talentos independentes.</h6>
     </div>
   )
 }

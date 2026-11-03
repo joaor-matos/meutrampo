@@ -5,64 +5,96 @@
     
 }
 
+/* Login-Cadastro*/  /* Login-Cadastro*/  /* Login-Cadastro*/  /* Login-Cadastro*/  /* Login-Cadastro*/  
+
 .backgroundLogin {
-    background-image: linear-gradient(155deg, #E56A6C 0%, #7753E4 100%);
-    justify-content: center;
+    
+    background-image: radial-gradient(circle at 15% 20%, #c95182 0%, #ad3c6e 35%, #882b53 70%, #5d1a38 100%);
+    justify-content: space-between;
     min-height: 100vh;
 }
 
-h1 {
+.headerLogin {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+}
+
+.containerLogoLogin {
+    padding-top: 16px;
+    height: 10px;
+    width: 10px;
+    padding-right: 60px;
+
+}
+
+.containerLogoLogin img {
+    height: auto;
+    width: 50px;
+    filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.8));
+}
+
+
+.meutrampotext {
     font-family: "Prompt", sans-serif;
     justify-self: center;
     color: #FFFFFF;
     font-size: 60px;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 45px rgba(255, 182, 217, 0.5);
 }
 
 .containerLogin {
-    background-color: #F4F4F4;
-    justify-content: center;
-    justify-self: center;
-    align-self: center;
-    width: 1000p;
-    height: 290px;
     display: flex;
-    flex-direction: row;
+    flex: 1;
+    background-color: #F4F4F4;
+    justify-self: center;
+    width: 560px;
+    height: 290px;
     padding-inline: 60px;
     border-radius: 10px;
 }
 
-h2 {
+.formText {
     font-family: "Poppins", sans-serif;
     justify-self: center;
     color: #CC6589;
     font-size: 20px;
-    padding: 20px;
+    padding-top: 20px;
 }
 
-.formLogin {
+.formContent {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.containerInput {
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .inputLogin {
-    background-color: #CC6589;
+    background-color: #FFFFFF;
     font-family: "Poppins", sans-serif;
     padding-block: 10px;
     padding-inline: 10px;
-    color: #FFFFFF;
+    border-color: #eecdd8;
+    border-style: solid;
+    border-width: 2px;
     border-radius: 10px;
     margin: 6px;
-    border-width: 0px;
     width: 200px;
 }
 
 .inputLogin::placeholder {
-    color: #FFFFFF;
+    color: #94A3B8;
 }
 
-.buttonLogin {
+.buttonSubmit {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     padding-block: 10px;
@@ -72,7 +104,7 @@ h2 {
     border-style: solid;
     border-width: 2px;
     color: #CC6589;
-    margin-bottom: 200px;
+    margin-bottom: 20px;
 }
 
 hr {
@@ -148,7 +180,17 @@ hr {
     text-decoration-line: none;
 }
 
-/* Config */
+.footerTextLogin {
+    font-family: "Poppins", sans-serif;
+    justify-self: center;
+    color: #FFFFFF;
+    font-size: 12px;
+    padding-top: 20px;
+    opacity: 0.7;
+    font-weight: 300;
+}
+
+/* Config */ /* Config */ /* Config */ /* Config */ /* Config */ /* Config */ /* Config */ /* Config */ 
 
 .backgroundConfig {
     background-color: #FFCFD0;
@@ -180,6 +222,18 @@ hr {
     padding-block: 10px;
     color: #CC6589;
 
+}
+
+.containerConfigTituloOrdem {
+    justify-content: space-between;
+}
+
+.configPortfolioContainerTitulo {
+    font-size: 28px;
+    padding-top: 4px;
+    padding-left: 16px;
+    color: #CC6589;
+    align-self: self-start;
 }
 
 .configPortfolioBio {

@@ -74,7 +74,13 @@ const Configuracao = ({ token }) => {
         {/* Configurar links do portfolio */}
 
         <div className='containerConfigLink'>
-
+          <div className='containerConfigTituloOrdem'>
+            <h1 className='configPortfolioContainerTitulo'>Links</h1>
+              <div>
+              <button></button>
+              <button></button>
+              </div>
+          </div>
           <div className='configLinkComponent'>
             <input 
               className='configLinkText' 
