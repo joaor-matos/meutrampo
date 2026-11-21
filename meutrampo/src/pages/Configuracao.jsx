@@ -116,7 +116,7 @@ const Configuracao = ({ token }) => {
         <div className='containerConfigBlocoLink'>
           <div className='containerConfigBlocoLinkTituloOrdem'>
             <div className='containerConfigBlocoTitulo'>
-              <h3>LINKS</h3>
+              <h3>BLOCO: LINKS</h3>
             </div>
 
             <div className='containerConfigBlocoOrdem'>
@@ -194,30 +194,6 @@ const Configuracao = ({ token }) => {
             </div>
           </div>
         </div>
-
-        <div className='containerConfigBlocoLink'>
-          <div className='containerConfigBlocoLinkTituloOrdem'></div>
-        </div>
-
-        {/* Configurar perfil de usuário/empresa */}
-
-        <div className='containerConfigLink'>
-          <div className='configLinkComponent'>
-            <input className='configLinkText' placeholder='Nome ou Empresa' type='text' name='linkTitle' />
-          </div>
-
-          <form className='configLinkComponent'>
-            <input className='configProfileBio' placeholder='Biografia' type='text' name='linkTitle' />
-          </form>
-
-          <div className='containerConfigLinkBtn'>
-            <button className='configAdicionarLink'>
-              <img src={check} alt="" />
-            </button>
-
-          </div>
-        </div>
-
       </div>
     </div>
   )

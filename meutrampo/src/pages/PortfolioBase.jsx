@@ -11,6 +11,9 @@ const PortfolioBase = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
+
+                
+
                 const { data, error } = await supabase
                     .from('profiles')
                     .select('*')
@@ -46,7 +49,27 @@ const PortfolioBase = () => {
 
 
 
-    if (loading) return <div>Carregando...</div>
+    if (loading) return (
+        <div className="loading-screen">
+            <div className="loading-shape loading-shape-top"></div>
+            <div className="loading-shape loading-shape-bottom"></div>
+
+            <div className="loading-content">
+                <h1 className="loading-title">
+                    meu trampo<span className="loading-dot">.</span>
+                </h1>
+                <p className="loading-subtitle">
+                    O palco dos seus talentos independentes
+                </p>
+
+                <div className="loading-dots">
+                    <span className="loading-dot-anim" style={{ animationDelay: '0s' }}></span>
+                    <span className="loading-dot-anim" style={{ animationDelay: '0.15s' }}></span>
+                    <span className="loading-dot-anim" style={{ animationDelay: '0.3s' }}></span>
+                </div>
+            </div>
+        </div>
+    )
 
     return (
         <div>
