@@ -203,27 +203,54 @@ hr {
 /* Config */
 /* Config */
 
+/* ============================================
+   BACKGROUND E ESTRUTURA GERAL
+   ============================================ */
+
 .backgroundConfig {
-    background-color: #FFCFD0;
+    background-color: #fbf5f7;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+/* ============================================
+   HEADER (responsivo)
+   ============================================ */
 
 .headerConfig {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 12px;
     padding-block: 16px;
     padding-inline: 20px;
-    width: 100v;
+    width: 100%;
+    box-sizing: border-box;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     background-color: #FFFFFF;
 }
 
+@media (min-width: 768px) {
+    .headerConfig {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
 .headerConfigLeft {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1em;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+@media (min-width: 768px) {
+    .headerConfigLeft {
+        flex-direction: row;
+        align-items: center;
+        gap: 1em;
+    }
 }
 
 .containerConfigLeftLogo {
@@ -252,31 +279,31 @@ hr {
 
 .containerConfigLeftLogo h2 {
     font-family: "Prompt", sans-serif;
-    justify-self: center;
     color: #FFFFFF;
     font-size: 1.1em;
+    margin: 0;
 }
 
 .containerConfigLeftLogo h3 {
     font-family: "Plus Jakarta Sans", sans-serif;
     font-weight: 300;
-    justify-self: center;
     color: #FFFFFF;
     font-size: 0.6em;
     letter-spacing: 0.5px;
+    margin: 2px 0 0 0;
 }
 
 .containerConfigLeftUrl {
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
     background-color: #FDF2F8;
-    border-width: px;
-    border-style: solid;
-    border-color: #FCE7F3;
+    border: 1px solid #FCE7F3;
     border-radius: 160px;
     padding-inline: 13px;
     padding-block: 10px;
+    gap: 2px;
 }
 
 .containerConfigLeftUrl div {
@@ -289,21 +316,23 @@ hr {
 .containerConfigLeftUrl button {
     all: unset;
     cursor: pointer;
-
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
 }
 
 .containerConfigLeftUrl p {
     font-family: "Plus Jakarta Sans", sans-serif;
     font-weight: 300;
-    justify-self: center;
     color: #94A3B8;
     font-size: 14px;
-    margin-right: 4px;
+    margin: 0 4px 0 0;
 }
 
 .containerConfigLeftUrl span {
     color: #B21950;
     font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 600;
 }
 
 .containerConfigLeftUrl button img {
@@ -316,6 +345,7 @@ hr {
     flex-direction: row;
     align-items: center;
     gap: 1em;
+    flex-wrap: wrap;
 }
 
 .btnViewLog {
@@ -323,12 +353,10 @@ hr {
     cursor: pointer;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
     background-color: #FFF1F2;
     border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #FECDD3;
+    border: 2px solid #FECDD3;
     padding-inline: 10px;
     padding-block: 10px;
     gap: 8px;
@@ -337,83 +365,389 @@ hr {
 .btnViewLog span {
     color: #BE123C;
     font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
 }
 
+.btnViewLog img {
+    height: 14px;
+    width: 14px;
+}
 
-.configPortfolioBackground {
-    background-image: linear-gradient(155deg, #E56A6C 0%, #7753E4 100%);
-    width: 400px;
-    height: 290px;
+/* ============================================
+   LAYOUT PRINCIPAL – GRID EDITOR + PREVIEW
+   ============================================ */
+
+.configMain {
+    flex: 1;
+    width: 100%;
+    max-width: 1720px;
+    margin: 0 auto;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+    .configMain {
+        padding: 24px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .configMain {
+        padding: 32px;
+    }
+}
+
+.configGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (min-width: 1024px) {
+    .configGrid {
+        grid-template-columns: 7fr 5fr;
+    }
+}
+
+.configEditor {
     display: flex;
-    align-self: center;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 0;
+}
+
+/* ============================================
+   CARD GENÉRICO
+   ============================================ */
+
+.configCard {
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 3px solid #FACFE2;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.configCardHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #FDF2F6;
+    margin-bottom: 18px;
+}
+
+.configDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #CC6589;
+    flex-shrink: 0;
+}
+
+.configCardHeader h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.configCardBody {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ============================================
+   AVATAR
+   ============================================ */
+
+.configAvatarRow {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #FDF2F6;
+    border: 1px solid #FCE7F0;
+}
+
+@media (min-width: 640px) {
+    .configAvatarRow {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.configAvatar {
+    position: relative;
+    width: 76px;
+    height: 76px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #CC6589, #E56A6C);
+    padding: 4px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.configAvatarInner {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding-inline: 60px;
-    border-radius: 10px;
-}
-
-.configPortfolioBanner {
-    background-color: #c2c2c2;
-    width: 400px;
-    height: 200px;
-    display: block;
-    align-self: center;
-    border-radius: 10px;
-}
-
-.configPortfolioNome {
-    font-size: 40px;
-    padding-block: 10px;
+    font-weight: 800;
+    font-size: 1.4rem;
     color: #CC6589;
-
 }
 
-.containerConfigTituloOrdem {
+.configAvatarOverlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-size: 1.1rem;
+}
+
+.configAvatar:hover .configAvatarOverlay {
+    opacity: 1;
+}
+
+.configAvatarInfo {
+    flex: 1;
+}
+
+.configAvatarInfo h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.configAvatarInfo p {
+    font-size: 0.7rem;
+    color: #64748B;
+    margin: 4px 0 8px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.configAvatarBtns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.btnPrimarySm {
+    padding: 6px 12px;
+    background: #CC6589;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+
+.btnPrimarySm:hover {
+    background: #B21950;
+}
+
+.btnSecondarySm {
+    padding: 6px 12px;
+    background: #FFFFFF;
+    color: #475569;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+
+.btnSecondarySm:hover {
+    background: #F8FAFC;
+}
+
+/* ============================================
+   CAMPOS DE FORMULÁRIO
+   ============================================ */
+
+.configField {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.configField label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748B;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.configField input,
+.configField textarea {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #FBCFE8;
+    padding: 9px 12px;
+    font-size: 0.85rem;
+    color: #1e293b;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.configField input:focus,
+.configField textarea:focus {
+    border-color: #CC6589;
+    box-shadow: 0 0 0 3px rgba(204, 101, 137, 0.15);
+}
+
+.configFieldLabelRow {
+    display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.configPortfolioContainerTitulo {
-    font-size: 28px;
-    padding-top: 4px;
-    padding-left: 16px;
+.configBioCounter {
+    font-size: 0.68rem;
+    font-weight: 600;
     color: #CC6589;
-    align-self: self-start;
+    font-family: "Plus Jakarta Sans", sans-serif;
 }
 
-.configPortfolioBio {
-    font-family: "Poppins", sans-serif;
-    font-style: italic;
-    text-align: center;
+.configBioCounter.over {
+    color: #E11D48;
+}
+
+/* ============================================
+   QUICK ADD TOOLBAR
+   ============================================ */
+
+.configQuickAdd {
+    padding: 16px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #FDF2F6, #FCE7F0);
+    border: 1px solid #FACFE2;
+}
+
+.configQuickAddHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.configQuickAddHeader span {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #83274C;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.configQuickAddButtons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+@media (min-width: 640px) {
+    .configQuickAddButtons {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.configQuickAddBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 12px;
+    background: #FFFFFF;
+    border: 1px solid #FACFE2;
+    border-radius: 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #334155;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-family: inherit;
+}
+
+.configQuickAddBtn:hover {
+    background: #CC6589;
+    color: #FFFFFF;
+}
+
+.configPlusCircle {
+    width: 18px;
+    height: 18px;
+    border-radius: 6px;
+    background: #FCE7F0;
     color: #CC6589;
-    font-weight: 300;
-    padding-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.7rem;
 }
 
-    {
-    /* Container Configuração de Links */
+.configQuickAddBtn:hover .configPlusCircle {
+    background: rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
 }
+
+/* ============================================
+   BLOCO DE LINKS (mantido e ajustado)
+   ============================================ */
 
 .containerConfigBlocoLink {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     background-color: #FFFFFF;
     border-radius: 16px;
-    border-color: #FACFE2;
-    border-style: solid;
-    border-width: 3px;
+    border: 3px solid #FACFE2;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .containerConfigBlocoLinkTituloOrdem {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
-    padding-top: 8px;
-    padding-left: 26px;
-    padding-right: 6px;
+    padding: 8px 16px 8px 26px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 8px;
 }
-
-.containerConfigBlocoTitulo {}
 
 .containerConfigBlocoTitulo h3 {
     font-size: 16px;
@@ -421,9 +755,9 @@ hr {
     padding-block: 2px;
     color: #BE123C;
     font-family: "Plus Jakarta Sans", sans-serif;
-    align-self: self-start;
     background-color: #FDF2F6;
     border-radius: 8px;
+    margin: 0;
 }
 
 .containerConfigBlocoOrdem {
@@ -431,17 +765,17 @@ hr {
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    padding-right: 16px;
 }
 
 .configBtnOrdem {
     all: unset;
     cursor: pointer;
     margin-inline: 8px;
-
+    display: inline-flex;
+    align-items: center;
 }
 
-.configBtnOrdem {
+.configBtnOrdem img {
     height: 10px;
     width: auto;
 }
@@ -455,23 +789,14 @@ hr {
     width: auto;
 }
 
-.configLinkIcon {
-    all: unset;
-    cursor: pointer;
-    align-self: end;
-    background-color: #FDF2F8;
-    border-color: #FBCFE8;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 12px;
-    height: 44px;
-    width: 44px;
-}
-
+/* Linha de adição de links */
 .configLinkComponent {
     display: flex;
-    padding: 10px;
     flex-direction: row;
+    align-items: flex-end;
+    gap: 6px;
+    padding: 10px;
+    flex-wrap: wrap;
 }
 
 .configLinkComponent h7 {
@@ -479,29 +804,51 @@ hr {
     color: #64748B;
     font-size: 10px;
     margin-inline: 8px;
+    display: block;
+    margin-bottom: 2px;
 }
 
 .configLinkText {
     display: flex;
     align-items: center;
     width: 12em;
+    min-width: 0;
     height: 40px;
     font-family: "Plus Jakarta Sans", sans-serif;
     background-color: #FFFFFF;
     color: #475569;
-    border-color: #FBCFE8;
+    border: 2px solid #FBCFE8;
     border-radius: 10px;
     padding-inline: 12px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 500;
     margin-inline: 5px;
-    border-style: solid;
-    border-width: 2px;
+    box-sizing: border-box;
 }
 
 .configLinkText::placeholder {
-    color: #475569;
+    color: #94A3B8;
     font-weight: 300;
+}
+
+.configLinkIcon {
+    all: unset;
+    cursor: pointer;
+    align-self: flex-end;
+    background-color: #FDF2F8;
+    border: 1px solid #FBCFE8;
+    border-radius: 12px;
+    height: 44px;
+    width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.configLinkIcon img {
+    height: 18px;
+    width: 18px;
 }
 
 .configAdicionarLinkBtn {
@@ -509,12 +856,13 @@ hr {
     cursor: pointer;
     height: 44px;
     width: 44px;
-    align-self: end;
-    align-items: center;
+    align-self: flex-end;
     display: flex;
+    align-items: center;
     justify-content: center;
     background-color: #CC6589;
     border-radius: 10px;
+    flex-shrink: 0;
 }
 
 .configAdicionarLinkBtn img {
@@ -533,11 +881,11 @@ hr {
     height: 2px;
     background-color: #FBCFE8;
     opacity: 0.8;
-    margin-inline: 8px;
+    margin: 4px auto;
     border-radius: 100px;
-    margin-block: 4px;
 }
 
+/* Lista de links exibidos */
 .containerLinkDisplay {
     display: flex;
     align-items: center;
@@ -545,30 +893,6 @@ hr {
     margin-inline: 8px;
     margin-block: 8px;
     flex-direction: row;
-}
-
-.configProfileBio {
-    display: flex;
-    align-items: center;
-    width: 800px;
-    height: 40px;
-    font-family: "Poppins", sans-serif;
-    background-color: #FFFFFF;
-    color: #CC6589;
-    border-color: #CC6589;
-    border-radius: 10px;
-    padding-inline: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    margin-inline: 5px;
-    border-style: solid;
-    border-width: 3px;
-    text-wrap: wrap;
-    text-align: center;
-}
-
-.configProfileBio::placeholder {
-    color: #CC6589;
 }
 
 ul {
@@ -582,7 +906,7 @@ ul {
     align-self: center;
     background-color: #CC6589;
     border-radius: 10px;
-    border-width: 0px;
+    border-width: 0;
     margin-inline: 5px;
 }
 
@@ -590,8 +914,206 @@ ul {
     display: flex;
     align-items: center;
     flex-direction: row;
-    border-width: 0px;
+    border-width: 0;
     background-color: rgba(10, 23, 55, 0);
+}
+
+/* ============================================
+   PRÉ-VISUALIZAÇÃO (CELULAR)
+   ============================================ */
+
+.configPreview {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+@media (min-width: 1024px) {
+    .configPreview {
+        position: sticky;
+        top: 96px;
+    }
+}
+
+.configPreviewHeader {
+    padding: 0 8px;
+}
+
+.configPreviewHeader span {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #475569;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.phoneFrame {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 340px;
+    height: 680px;
+    border-radius: 24px;
+    padding: 18px;
+    background: linear-gradient(180deg, #901B50 0%, #B62A64 50%, #680E37 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.phoneFrame::-webkit-scrollbar {
+    display: none;
+}
+
+.phoneScreen {
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.phoneBanner {
+    height: 80px;
+    width: 100%;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    margin-bottom: -40px;
+}
+
+.phoneProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    position: relative;
+    z-index: 2;
+    padding-top: 4px;
+}
+
+.phoneAvatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: #7B193D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.phoneProfile h3 {
+    margin: 4px 0 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0.01em;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.phoneProfile p {
+    font-size: 0.68rem;
+    color: rgba(252, 231, 240, 0.9);
+    max-width: 260px;
+    line-height: 1.4;
+    margin: 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.phoneLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px;
+}
+
+.phoneLink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e293b;
+    padding: 11px 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: background 0.2s, transform 0.2s;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.phoneLink:hover {
+    background: #FFFFFF;
+    transform: translateY(-1px);
+}
+
+.phoneLink svg {
+    width: 14px;
+    height: 14px;
+    color: #94A3B8;
+    flex-shrink: 0;
+}
+
+.phoneLinkPlaceholder {
+    text-align: center;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 14px;
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.configFooter {
+    border-top: 1px solid #FCE7F0;
+    background: #FFFFFF;
+    padding: 20px 16px;
+    text-align: center;
+    margin-top: 24px;
+}
+
+.configFooter p {
+    font-size: 0.72rem;
+    color: #64748B;
+    margin: 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* ============================================
+   RESPONSIVIDADE EXTRA — MOBILE
+   ============================================ */
+
+@media (max-width: 767px) {
+    .configLinkComponent {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .configLinkText {
+        width: 100%;
+    }
+
+    .configLinkIcon,
+    .configAdicionarLinkBtn {
+        align-self: flex-end;
+    }
+
+    .containerLinkDisplay li .containerLinkDisplay {
+        grid-template-columns: 1fr;
+    }
+
+    .btnViewLog span {
+        display: inline;
+    }
 }
 
 /* Lading Page */
@@ -1121,4 +1643,335 @@ ul {
     color: rgba(252, 231, 240, 0.7);
     font-weight: 500;
     padding: 16px 0;
+}
+
+/* ============================================
+   BLOCOS GENÉRICOS (Galeria / Vídeo)
+   ============================================ */
+
+.configBlockCard {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid #FCE7F0;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.configBlockCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.configBlockHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #FDF2F6;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.configBlockHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.configDragHandle {
+  display: inline-flex;
+  color: #94A3B8;
+  cursor: grab;
+}
+
+.configDragHandle:hover {
+  color: #475569;
+}
+
+.configDragHandle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.configBlockTag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #475569;
+  background: #F1F5F9;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.configBlockActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.configBlockBtn {
+  all: unset;
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #94A3B8;
+  transition: background 0.2s, color 0.2s;
+}
+
+.configBlockBtn:hover {
+  background: #FDF2F6;
+  color: #CC6589;
+}
+
+.configBlockBtnDanger {
+  color: #FB7185;
+}
+
+.configBlockBtnDanger:hover {
+  background: #FEF2F2;
+  color: #E11D48;
+}
+
+.configBlockBtn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.configBlockBody {
+  padding: 0;
+}
+
+/* ============================================
+   BLOCO GALERIA
+   ============================================ */
+
+.configGaleriaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (min-width: 480px) {
+  .configGaleriaGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.configGaleriaAdd {
+  height: 80px;
+  border: 2px dashed #F9A8D4;
+  border-radius: 12px;
+  background: rgba(253, 242, 246, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #CC6589;
+  cursor: pointer;
+  gap: 2px;
+  transition: background 0.2s, border-color 0.2s;
+  font-family: inherit;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.configGaleriaAdd:hover {
+  background: #FDF2F6;
+  border-color: #CC6589;
+}
+
+.configGaleriaAdd svg {
+  width: 18px;
+  height: 18px;
+}
+
+.configGaleriaItem {
+  position: relative;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  background: #E2E8F0; /* placeholder cinza, já que a galeria é simplificada */
+}
+
+.configGaleriaOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.configGaleriaItem:hover .configGaleriaOverlay {
+  opacity: 1;
+}
+
+.configGaleriaRemove {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  color: #1e293b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.configGaleriaRemove:hover {
+  background: #FFFFFF;
+}
+
+.configGaleriaLabel {
+  position: absolute;
+  bottom: 4px;
+  left: 6px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* ============================================
+   BLOCO VÍDEO
+   ============================================ */
+
+.configVideoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .configVideoGrid {
+    grid-template-columns: 4fr 8fr;
+  }
+}
+
+.configVideoPreview {
+  height: 96px;
+  border-radius: 12px;
+  background: #0F172A;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.configVideoPreview.confirmado {
+  background: #064E3B; /* verde escuro sutil quando confirmado */
+}
+
+.configVideoPlay {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.configVideoPreview:hover .configVideoPlay {
+  background: #CC6589;
+}
+
+.configVideoPlay svg {
+  width: 18px;
+  height: 18px;
+  transform: translateX(1px);
+}
+
+.configVideoFields {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.configVideoLabel {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748B;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.configVideoInputRow {
+  display: flex;
+  gap: 8px;
+}
+
+.configVideoInput {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.75rem;
+  padding: 8px 10px;
+  border: 1px solid #FBCFE8;
+  border-radius: 8px;
+  color: #475569;
+  font-family: monospace;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.configVideoInput:focus {
+  border-color: #CC6589;
+}
+
+.configVideoBtnConfirm,
+.configVideoBtnClear {
+  border: none;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0 12px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  font-family: inherit;
+}
+
+.configVideoBtnConfirm {
+  background: #10B981;
+  color: #FFFFFF;
+}
+.configVideoBtnConfirm:hover {
+  background: #059669;
+}
+
+.configVideoBtnClear {
+  background: #FEF2F2;
+  color: #E11D48;
+}
+.configVideoBtnClear:hover {
+  background: #FEE2E2;
+}
+
+.configVideoHint {
+  font-size: 0.65rem;
+  color: #94A3B8;
+  margin: 0;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
