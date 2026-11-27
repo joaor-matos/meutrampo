@@ -29,6 +29,10 @@ const Configuracao = ({ token }) => {
   const [videoUrl, setVideoUrl] = useState('https://youtube.com/watch?v=dQw4w9WgXcQ');
   const [videoConfirmado, setVideoConfirmado] = useState(false);
 
+  // Color Picker
+  const [corFundo1, setCorFundo1] = useState('#B21950');
+  const [showPickerFundo1, setShowPickerFundo1] = useState(false);
+
   useEffect(() => {
     if (token?.user?.user_metadata?.fullName) {
       setFullName(token.user.user_metadata.fullName);
@@ -167,8 +171,8 @@ const Configuracao = ({ token }) => {
                     <div className="configAvatarInner">
                       {fullName ? fullName.substring(0, 2).toUpperCase() : 'MC'}
                     </div>
-
                   </div>
+
                   <div className="configAvatarInfo">
                     <h3>Foto de Apresentação</h3>
                     <p>Recomendado formato quadrado (PNG, JPG ou WEBP) até 5MB.</p>
@@ -176,6 +180,50 @@ const Configuracao = ({ token }) => {
                       <button type="button" className="btnPrimarySm">Trocar imagem</button>
                       <button type="button" className="btnSecondarySm">Remover</button>
                     </div>
+                  </div>
+                </div>
+                
+                {/* Configurar cores */}
+                <div className='configCoresRow'>
+                  <div>
+                    <h3>Cores de fundo</h3>
+                    <div className='containerCor'>
+                      <div className='btnCorWrapper'>
+                        <button
+                          type='button'
+                          className='btnCor'
+                          style={{ backgroundColor: corFundo1 }}
+                          onClick={() => setShowPickerFundo1(!showPickerFundo1)}
+                        ></button>
+                        {showPickerFundo1 && (
+                          <div className='colorPickerPopup'>
+                            <input
+                              type='color'
+                              value={corFundo1}
+                              onChange={(e) => setCorFundo1(e.target.value)}
+                            />
+                          </div>
+                        )}
+                      </div>
+                      <div className='btnCor'></div>
+                    </div>
+                    
+                  </div>
+                  <div>
+                    <h3>Cores da fonte</h3>
+                    <div className='containerCor'>
+                      <div className='btnCor'></div>
+                    </div>
+                    
+                  </div>
+                  <div>
+                    <h3>Cores Primária</h3>
+                    <div className='containerCor'>
+                      <div className='btnCor'></div>
+                      <div className='btnCor'></div>
+                      <div className='btnCor'></div>
+                    </div>
+                    
                   </div>
                 </div>
 
@@ -252,11 +300,13 @@ const Configuracao = ({ token }) => {
                 </div>
               </div>
 
+
+
               <div className="configLinkComponent">
                 <button className="configLinkIcon" onClick={handleAddLink} type="button">
                   <img src={plus} alt="Adicionar link" />
                 </button>
-                <div>
+                <div className="configLinkField">
                   <h7>TÍTULO DO BOTÃO</h7>
                   <input
                     className="configLinkText"
@@ -267,7 +317,7 @@ const Configuracao = ({ token }) => {
                     onChange={(e) => setNovoLinkTitle(e.target.value)}
                   />
                 </div>
-                <div>
+                <div className="configLinkField">
                   <h7>ENDEREÇO URL</h7>
                   <input
                     className="configLinkText"
@@ -286,7 +336,7 @@ const Configuracao = ({ token }) => {
               <div className="horizontalDivider"></div>
 
               <div className="containerLinkDisplay">
-                <ul>
+                <ul >
                   {links.map((link) => (
                     <li key={link.id_link}>
                       <div className="containerLinkDisplay">
@@ -448,8 +498,6 @@ const Configuracao = ({ token }) => {
 
             <div className="phoneFrame">
               <div className="phoneScreen">
-                {/* Banner */}
-                <div className="phoneBanner"></div>
 
                 {/* Avatar + Nome */}
                 <div className="phoneProfile">

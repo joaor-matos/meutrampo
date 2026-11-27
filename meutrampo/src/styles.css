@@ -584,6 +584,70 @@ hr {
 .btnSecondarySm:hover {
     background: #F8FAFC;
 }
+/* ============================================
+   CONFIG CORES
+   ============================================ */
+
+.configCoresRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 14px;
+    border-radius: 12px;
+    background: #FDF2F6;
+    border: 1px solid #FCE7F0; 
+}
+
+.configCoresRow h3 {
+    font-size: 14px;
+    color: #1e293b;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.containerCor {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    background-color: #FFFFFF;
+    gap: 6px;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+.btnCor {
+    all: unset;
+    display: flex;
+    height: 2.5em;
+    width: 2.5em;
+    background-color: #B21950;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.btnCorWrapper {
+    position: relative;
+}
+
+.colorPickerPopup {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 10;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.colorPickerPopup input[type='color'] {
+    width: 150px;
+    height: 150px;
+    border: none;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+}
 
 /* ============================================
    CAMPOS DE FORMULÁRIO
@@ -678,7 +742,7 @@ hr {
 
 @media (min-width: 640px) {
     .configQuickAddButtons {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -808,11 +872,19 @@ hr {
     margin-bottom: 2px;
 }
 
+.configLinkField {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .configLinkText {
     display: flex;
     align-items: center;
-    width: 12em;
-    min-width: 0;
+    flex: 1 1 auto;        /* preenche o espaço disponível */
+    width: 100%;           /* em layouts empilhados, ocupa 100% */
+    min-width: 0;          /* evita overflow em flex */
     height: 40px;
     font-family: "Plus Jakarta Sans", sans-serif;
     background-color: #FFFFFF;
@@ -887,12 +959,15 @@ hr {
 
 /* Lista de links exibidos */
 .containerLinkDisplay {
+    all: unset;
     display: flex;
     align-items: center;
     align-self: center;
     margin-inline: 8px;
     margin-block: 8px;
     flex-direction: row;
+    flex: 1 1 0;
+    min-width: 0;
 }
 
 ul {
@@ -1650,103 +1725,103 @@ ul {
    ============================================ */
 
 .configBlockCard {
-  background: #FFFFFF;
-  border-radius: 16px;
-  border: 1px solid #FCE7F0;
-  padding: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.2s;
-  box-sizing: border-box;
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid #FCE7F0;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s;
+    box-sizing: border-box;
 }
 
 .configBlockCard:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .configBlockHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 12px;
-  margin-bottom: 12px;
-  border-bottom: 1px solid #FDF2F6;
-  gap: 8px;
-  flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #FDF2F6;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .configBlockHeaderLeft {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .configDragHandle {
-  display: inline-flex;
-  color: #94A3B8;
-  cursor: grab;
+    display: inline-flex;
+    color: #94A3B8;
+    cursor: grab;
 }
 
 .configDragHandle:hover {
-  color: #475569;
+    color: #475569;
 }
 
 .configDragHandle svg {
-  width: 18px;
-  height: 18px;
+    width: 18px;
+    height: 18px;
 }
 
 .configBlockTag {
-  font-size: 0.7rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #475569;
-  background: #F1F5F9;
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #475569;
+    background: #F1F5F9;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .configBlockActions {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .configBlockBtn {
-  all: unset;
-  cursor: pointer;
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #94A3B8;
-  transition: background 0.2s, color 0.2s;
+    all: unset;
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #94A3B8;
+    transition: background 0.2s, color 0.2s;
 }
 
 .configBlockBtn:hover {
-  background: #FDF2F6;
-  color: #CC6589;
+    background: #FDF2F6;
+    color: #CC6589;
 }
 
 .configBlockBtnDanger {
-  color: #FB7185;
+    color: #FB7185;
 }
 
 .configBlockBtnDanger:hover {
-  background: #FEF2F2;
-  color: #E11D48;
+    background: #FEF2F2;
+    color: #E11D48;
 }
 
 .configBlockBtn svg {
-  width: 15px;
-  height: 15px;
+    width: 15px;
+    height: 15px;
 }
 
 .configBlockBody {
-  padding: 0;
+    padding: 0;
 }
 
 /* ============================================
@@ -1754,97 +1829,98 @@ ul {
    ============================================ */
 
 .configGaleriaGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
 }
 
 @media (min-width: 480px) {
-  .configGaleriaGrid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+    .configGaleriaGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .configGaleriaAdd {
-  height: 80px;
-  border: 2px dashed #F9A8D4;
-  border-radius: 12px;
-  background: rgba(253, 242, 246, 0.6);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #CC6589;
-  cursor: pointer;
-  gap: 2px;
-  transition: background 0.2s, border-color 0.2s;
-  font-family: inherit;
-  font-size: 0.65rem;
-  font-weight: 700;
+    height: 80px;
+    border: 2px dashed #F9A8D4;
+    border-radius: 12px;
+    background: rgba(253, 242, 246, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #CC6589;
+    cursor: pointer;
+    gap: 2px;
+    transition: background 0.2s, border-color 0.2s;
+    font-family: inherit;
+    font-size: 0.65rem;
+    font-weight: 700;
 }
 
 .configGaleriaAdd:hover {
-  background: #FDF2F6;
-  border-color: #CC6589;
+    background: #FDF2F6;
+    border-color: #CC6589;
 }
 
 .configGaleriaAdd svg {
-  width: 18px;
-  height: 18px;
+    width: 18px;
+    height: 18px;
 }
 
 .configGaleriaItem {
-  position: relative;
-  height: 80px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #E2E8F0;
-  background: #E2E8F0; /* placeholder cinza, já que a galeria é simplificada */
+    position: relative;
+    height: 80px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+    background: #E2E8F0;
+    /* placeholder cinza, já que a galeria é simplificada */
 }
 
 .configGaleriaOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s;
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
 }
 
 .configGaleriaItem:hover .configGaleriaOverlay {
-  opacity: 1;
+    opacity: 1;
 }
 
 .configGaleriaRemove {
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  border: none;
-  background: rgba(255, 255, 255, 0.85);
-  color: #1e293b;
-  font-size: 0.7rem;
-  font-weight: 700;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    color: #1e293b;
+    font-size: 0.7rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .configGaleriaRemove:hover {
-  background: #FFFFFF;
+    background: #FFFFFF;
 }
 
 .configGaleriaLabel {
-  position: absolute;
-  bottom: 4px;
-  left: 6px;
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  font-family: "Plus Jakarta Sans", sans-serif;
+    position: absolute;
+    bottom: 4px;
+    left: 6px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 /* ============================================
@@ -1852,126 +1928,129 @@ ul {
    ============================================ */
 
 .configVideoGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: center;
 }
 
 @media (min-width: 640px) {
-  .configVideoGrid {
-    grid-template-columns: 4fr 8fr;
-  }
+    .configVideoGrid {
+        grid-template-columns: 4fr 8fr;
+    }
 }
 
 .configVideoPreview {
-  height: 96px;
-  border-radius: 12px;
-  background: #0F172A;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.3s;
+    height: 96px;
+    border-radius: 12px;
+    background: #0F172A;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
 }
 
 .configVideoPreview.confirmado {
-  background: #064E3B; /* verde escuro sutil quando confirmado */
+    background: #064E3B;
+    /* verde escuro sutil quando confirmado */
 }
 
 .configVideoPlay {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
 }
 
 .configVideoPreview:hover .configVideoPlay {
-  background: #CC6589;
+    background: #CC6589;
 }
 
 .configVideoPlay svg {
-  width: 18px;
-  height: 18px;
-  transform: translateX(1px);
+    width: 18px;
+    height: 18px;
+    transform: translateX(1px);
 }
 
 .configVideoFields {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .configVideoLabel {
-  font-size: 0.6rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #64748B;
-  font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748B;
+    font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .configVideoInputRow {
-  display: flex;
-  gap: 8px;
+    display: flex;
+    gap: 8px;
 }
 
 .configVideoInput {
-  flex: 1;
-  min-width: 0;
-  font-size: 0.75rem;
-  padding: 8px 10px;
-  border: 1px solid #FBCFE8;
-  border-radius: 8px;
-  color: #475569;
-  font-family: monospace;
-  outline: none;
-  transition: border-color 0.2s;
-  box-sizing: border-box;
+    flex: 1;
+    min-width: 0;
+    font-size: 0.75rem;
+    padding: 8px 10px;
+    border: 1px solid #FBCFE8;
+    border-radius: 8px;
+    color: #475569;
+    font-family: monospace;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
 }
 
 .configVideoInput:focus {
-  border-color: #CC6589;
+    border-color: #CC6589;
 }
 
 .configVideoBtnConfirm,
 .configVideoBtnClear {
-  border: none;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  cursor: pointer;
-  padding: 0 12px;
-  transition: background 0.2s;
-  flex-shrink: 0;
-  font-family: inherit;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0 12px;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    font-family: inherit;
 }
 
 .configVideoBtnConfirm {
-  background: #10B981;
-  color: #FFFFFF;
+    background: #10B981;
+    color: #FFFFFF;
 }
+
 .configVideoBtnConfirm:hover {
-  background: #059669;
+    background: #059669;
 }
 
 .configVideoBtnClear {
-  background: #FEF2F2;
-  color: #E11D48;
+    background: #FEF2F2;
+    color: #E11D48;
 }
+
 .configVideoBtnClear:hover {
-  background: #FEE2E2;
+    background: #FEE2E2;
 }
 
 .configVideoHint {
-  font-size: 0.65rem;
-  color: #94A3B8;
-  margin: 0;
-  font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 0.65rem;
+    color: #94A3B8;
+    margin: 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
 }
